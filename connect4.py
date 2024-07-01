@@ -2,8 +2,8 @@ import numpy as np
 import pygame
 import sys
 import math
-import random
 from threading import Timer
+import secrets
 
 # Global Constants
 ROWS, COLS = 6, 7
@@ -117,7 +117,7 @@ def minimax(board, depth, alpha, beta, maximizing_player):
 
     if maximizing_player:
         value = -math.inf
-        column = random.choice(valid_locations)
+        column = secrets.choice(valid_locations)
         for col in valid_locations:
             row = get_next_open_row(board, col)
             b_copy = board.copy()
@@ -132,7 +132,7 @@ def minimax(board, depth, alpha, beta, maximizing_player):
         return column, value
     else:
         value = math.inf
-        column = random.choice(valid_locations)
+        column = secrets.choice(valid_locations)
         for col in valid_locations:
             row = get_next_open_row(board, col)
             b_copy = board.copy()
@@ -160,7 +160,7 @@ def end_game():
 board = create_board()
 game_over = False
 not_over = True
-turn = random.randint(PLAYER_TURN, AI_TURN)
+turn = secrets.SystemRandom().randint(PLAYER_TURN, AI_TURN)
 
 pygame.init()
 SQUARESIZE = 100
